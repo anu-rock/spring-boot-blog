@@ -5,6 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties("blog")
 class BlogProperties {
 
+    // lateinit allows properties to be initialized later.
+    // Otherwise, Kotlin mandates properties to be initialized while during declaration.
     lateinit var title: String
     val banner = Banner()
 
