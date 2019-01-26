@@ -46,7 +46,7 @@ class RestApiTests(@Autowired val mockMvc: MockMvc) {
                 author = anurag
         )
         whenever(articleRepository.findAllByOrderByCreatedAtDesc()).thenReturn(listOf(article1, article2))
-        mockMvc.perform(get("/api/articles")
+        mockMvc.perform(get("/api/articles/")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
