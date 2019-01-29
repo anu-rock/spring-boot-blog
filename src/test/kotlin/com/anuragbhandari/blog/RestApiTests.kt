@@ -14,6 +14,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @ExtendWith(SpringExtension::class)
@@ -25,6 +26,26 @@ class RestApiTests(@Autowired val mockMvc: MockMvc) {
 
     @MockBean
     private lateinit var articleRepository: ArticleRepository
+
+    @Test
+    fun `Create article`() {
+        val anurag = User("anurag", "Anurag", "Bhandari")
+        val article = Article(
+                title = "Anurag hacks the internet",
+                headline = "Internet will never be the same",
+                content = """"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."""",
+                author = anurag
+        )
+        val createdArticle = article.copy(id = 1)
+        whenever(articleRepository.save(article))
+                .thenReturn(createdArticle)
+        mockMvc.perform(post("/api/articles/")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk)
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("\$.[0].id").value(createdArticle.id!!))
+    }
 
     @Test
     fun `List article`() {
