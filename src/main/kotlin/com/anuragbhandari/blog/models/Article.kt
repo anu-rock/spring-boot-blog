@@ -8,6 +8,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
+@Table(name = "articles")
 @JsonIgnoreProperties(value = [ "updatedAt" ], allowGetters = true)
 @EntityListeners(AuditingEntityListener::class) // will help auto-populated @CreatedDate and
                                                 // @LastModifiedDate annotated properties

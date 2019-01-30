@@ -15,31 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 @SpringBootApplication
 @EnableConfigurationProperties(BlogProperties::class)
 @EnableJpaAuditing
-class BlogApplication {
-//	@Bean
-//	fun databaseInitializer(userRepository: UserRepository,
-//							repository: ArticleRepository) = CommandLineRunner {
-//		val anurag = User("anurag", "Anurag", "Bhandari", "King of this API")
-//		userRepository.save(anurag)
-//
-//		val article1 = Article(
-//				title = "Hello, World",
-//				headline = "Hello world takes over the world.",
-//				content = "Bla, bla, bla, bla... and more bla.",
-//				author = anurag
-//		)
-//
-//		val article2 = Article(
-//				title = "Trying out Spring Boot",
-//				headline = "A new trend in enterprise API development has emerged.",
-//				content = "Wow, this is such a nice feeling. Divya is watching Ratatouille at the moment on TV.",
-//				author = anurag
-//		)
-//
-//		repository.save(article1)
-//		repository.save(article2)
-//	}
-}
+class BlogApplication
 
 fun main(args: Array<String>) {
 	runApplication<BlogApplication>(*args)
